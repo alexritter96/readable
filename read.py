@@ -37,7 +37,7 @@ import crayons
 
 def main():
     args = docopt(__doc__, version='Readable v1.0')
-    text = "https://www.kennethreitz.org/essays/the-reality-of-developer-burnout"
+    text = ""
     read = Readability(text)
 
     if args['<text>']:
