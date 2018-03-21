@@ -1,5 +1,4 @@
 import math
-import re
 import requests
 
 from nltk.corpus import cmudict
@@ -30,6 +29,7 @@ class Readability:
 
     def char(self):
         char = 0
+
         for word in self.word_tokenize():
             for w in word:
                 char += 1
@@ -112,8 +112,3 @@ class Readability:
         chars = self.char()
         f = 4.71 * (chars / self.word_count()) + 0.5 * (self.word_count() / self.sent_count()) - 21.43
         return "Automated Readability Index: {}".format(f)
-
-
-
-
-
