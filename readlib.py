@@ -14,24 +14,33 @@ tokenizer = RegexpTokenizer(r'\w+')
 
 class Readability:
 
-    def __init__(self, txt):
-        self.sents = sent_tokenize(txt)
-        self.words = tokenizer.tokenize(txt)
-        self.txt = txt
+    def __init__(self, url):
+        self.url = url
+
+    def get_url(self):
+        r = requests.get(self.url)
+        soup = BeautifulSoup(r.text)
+        return soup.get_text()
+
+    def sent_tokenize(self):
+        return sent_tokenize(self.get_url())
+
+    def word_tokenize(self):
+        return tokenizer.tokenize(self.get_url())
 
     def char(self):
         char = 0
-        for word in self.words:
+        for word in self.word_tokenize():
             for w in word:
                 char += 1
 
         return char
 
     def sent_count(self):
-        return len(self.sents)
+        return len(self.sent_tokenize())
 
     def word_count(self):
-        return len(self.words)
+        return len(self.word_tokenize())
 
     def syl(self, word):
         # returns number of syllables per word
@@ -47,7 +56,7 @@ class Readability:
         # tokenizes all words. For each token, the syl function is called.
         # Returns the number of syllables for each token in a list.
         len_syl = []
-        word = self.words
+        word = self.word_tokenize()
 
         for w in word:
             len_syl.append(self.syl(w))
@@ -104,10 +113,7 @@ class Readability:
         f = 4.71 * (chars / self.word_count()) + 0.5 * (self.word_count() / self.sent_count()) - 21.43
         return "Automated Readability Index: {}".format(f)
 
-    def get_url(self, url):
-        r = requests.get(url)
-        soup = BeautifulSoup(r.text)
-        return soup.get_text()
+
 
 
 

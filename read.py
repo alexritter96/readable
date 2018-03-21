@@ -37,7 +37,7 @@ import crayons
 
 def main():
     args = docopt(__doc__, version='Readable v1.0')
-    text = "In fact, knowledge in the precise sense of the word is always knowledge of an object. Of a particular object, for it is impossible to know in general, without knowing a particular system of phenomena, whether these are chemical, psychological, or some other phenomena."
+    text = "https://www.kennethreitz.org/essays/the-reality-of-developer-burnout"
     read = Readability(text)
 
     if args['<text>']:
