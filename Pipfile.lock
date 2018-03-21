@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ac6f5368fca0ccdcdded70fc1cb613cb4dee074cc9836230cd02f96ac28eea43"
+            "sha256": "b8eb242c09eac942cbbdef50f0f9c8d45abe73cb9f551d407fae26600e4cb14c"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -105,6 +105,12 @@
                 "sha256:832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb"
             ],
             "version": "==1.11.0"
+        },
+        "syllabipy": {
+            "hashes": [
+                "sha256:4d747730ad99b416755b4a049af9ffa6303ecadae9e024f3eddb90a5a4d7e8f4"
+            ],
+            "version": "==0.2"
         },
         "urllib3": {
             "hashes": [

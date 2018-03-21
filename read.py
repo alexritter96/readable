@@ -11,6 +11,7 @@ Usage:
   read <text> [--avgchars]
   read <text> [--avgwords]
   read <text> [--htmltext]
+  read <text> [--syllabify]
   read (-h | --help)
   read --version
 Options:
@@ -27,6 +28,7 @@ Options:
   --avgchars          Returns the Average Number of Characters per Word
   --avgwords          Returns the Average Number of Words per Sentence
   --htmltext          Returns Text of HTML Document
+  --syllabify         Returns Syllabification of Word
 
 """
 
@@ -37,7 +39,7 @@ import crayons
 
 def main():
     args = docopt(__doc__, version='Readable v1.0')
-    text = ""
+    text = "https://www.marxists.org/archive/ilyenkov/works/essays/essay1.htm"
     read = Readability(text)
 
     if args['<text>']:
@@ -72,7 +74,11 @@ def main():
             print("Average Number of Words Per Sentence: {}".format(read.avg_words()))
 
         if args['--htmltext']:
-            print(read.get_url('https://www.marxists.org/archive/marx/works/1844/manuscripts/hegel.htm#44H6'))
+            print(read.get_url())
+
+        if args['--syllabify']:
+            word = "sequences"
+            print(read.syllabify(word))
 
 
 if __name__ == '__main__':

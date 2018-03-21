@@ -6,9 +6,11 @@ from nltk.tokenize import RegexpTokenizer
 from nltk.tokenize import sent_tokenize
 
 from bs4 import BeautifulSoup
+from syllabipy.sonoripy import SonoriPy as sp
 
 d = cmudict.dict()
 tokenizer = RegexpTokenizer(r'\w+')
+
 
 
 class Readability:
@@ -18,7 +20,7 @@ class Readability:
 
     def get_url(self):
         r = requests.get(self.url)
-        soup = BeautifulSoup(r.text)
+        soup = BeautifulSoup(r.text, "html.parser")
         return soup.get_text()
 
     def sent_tokenize(self):
@@ -50,7 +52,7 @@ class Readability:
             return syllable[0]
 
         except KeyError:
-            return None
+            return sp(word)
 
     def list_to_word(self):
         # tokenizes all words. For each token, the syl function is called.
@@ -112,3 +114,7 @@ class Readability:
         chars = self.char()
         f = 4.71 * (chars / self.word_count()) + 0.5 * (self.word_count() / self.sent_count()) - 21.43
         return "Automated Readability Index: {}".format(f)
+
+    def syllabify(self, word):
+        return sp(word)
+
